@@ -32,11 +32,13 @@ public class A : MonoBehaviour
             }
             foreach(PathNode neighbour in MapGenerator.GetNeighbours(currentNode))
             {
+                int newMovementCostToNeighbour = currentNode.gCost + CalculateDistanceCost(currentNode, neighbour) + neighbour.weigth;
+                
                 if (closedList.Contains(neighbour))
                 {
                     continue;
                 }
-                int newMovementCostToNeighbour = currentNode.gCost + CalculateDistanceCost(currentNode, neighbour) + neighbour.weigth;
+               
                 if(newMovementCostToNeighbour < neighbour.gCost||!openList.Contains(neighbour))
                 {
                     neighbour.gCost = newMovementCostToNeighbour;
@@ -75,9 +77,8 @@ public class A : MonoBehaviour
     }
     public static PathNode FindPathNode(int x,int y)
     {
-        foreach(PathNode node in MapGenerator.nodes)
+        foreach(PathNode node  in MapGenerator.nodes)
         {
-
             if (node.x == x && node.y == y)
             {
                 return node;
