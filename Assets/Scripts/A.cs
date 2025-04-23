@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class A : MonoBehaviour
@@ -68,15 +69,16 @@ public class A : MonoBehaviour
         int yDistance = Mathf.Abs(a.y - b.y);
         if (xDistance > yDistance)
         {
-            return 10 * yDistance + 10 * (xDistance - yDistance);
+            return  yDistance +  (xDistance - yDistance);
         }
-        return 10 * xDistance + 10 * (yDistance - xDistance);
+        return  xDistance +  (yDistance - xDistance);
     }
     public static PathNode FindPathNode(int x,int y)
     {
         foreach(PathNode node in MapGenerator.nodes)
         {
-            if(node.x == x && node.y == y)
+
+            if (node.x == x && node.y == y)
             {
                 return node;
             }

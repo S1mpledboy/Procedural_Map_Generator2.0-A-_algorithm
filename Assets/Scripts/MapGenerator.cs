@@ -72,6 +72,7 @@ public class MapGenerator : MonoBehaviour
                 int tileID = GetIDbyPerlin(x,y);
                 CreateTile(tileID, x, y);
                 nodes.Add(new PathNode(x, y, (tileID+1)*(tileID+1)));
+                
             }
         }
     }

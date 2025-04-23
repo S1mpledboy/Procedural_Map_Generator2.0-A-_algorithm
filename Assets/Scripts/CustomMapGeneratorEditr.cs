@@ -10,7 +10,7 @@ public class CustomMapGeneratorEditr : Editor
     {
         MapGenerator generator = (MapGenerator)target;
         DrawDefaultInspector();
-        if(GUILayout.Button("Randomize offset"))
+        if(GUILayout.Button("Randomize seed"))
         {
             generator.GenerateRandomOffset();
         }

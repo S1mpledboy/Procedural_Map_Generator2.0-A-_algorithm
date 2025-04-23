@@ -4,29 +4,38 @@ using UnityEngine;
 
 public class MouseHandler : MonoBehaviour
 {
-    PathNode startNode;
-    PathNode endNode;
-    [SerializeField]Vector2Int startPosition,endPosition;
+    static PathNode startNode, endNode;
+    
+   
 
-
-    void Update()
+   public static void SetStartEndNode(int x, int y)
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-        { 
-            startNode = A.FindPathNode(startPosition.x, startPosition.y);
-            endNode = A.FindPathNode(endPosition.x, endPosition.y);
+        if (startNode == null)
+        {
+            startNode = A.FindPathNode(x, y);
 
         }
-
-        if (Input.GetKeyDown(KeyCode.H) && startNode != null && endNode != null)
+        else if (endNode == null) 
         {
-          List<PathNode> path =  A.FindPath(startNode.x, startNode.y, endNode.x, endNode.y);
-            foreach(PathNode node in path)
+            endNode = A.FindPathNode(x, y); 
+        }
+        GeneratePath();
+    }
+    static void GeneratePath()
+    {
+        if (startNode != null && endNode != null)
+        {
+            
+            List<PathNode> path = A.FindPath(startNode.x, startNode.y, endNode.x, endNode.y);
+            foreach (PathNode node in path)
             {
-                Debug.Log(node);
+                
                 MapGenerator.CreateTile(node.x, node.y);
             }
+            startNode = null;
+            endNode = null;
         }
     }
+
  
 }

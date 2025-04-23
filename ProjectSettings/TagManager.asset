@@ -47,3 +47,6 @@ TagManager:
   - name: Road
     uniqueID: 729453901
     locked: 0
+  - name: City
+    uniqueID: 3696055851
+    locked: 0
